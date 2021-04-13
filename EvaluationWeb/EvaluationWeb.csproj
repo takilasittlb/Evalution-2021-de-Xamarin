@@ -155,7 +155,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\BienController.cs" />
     <Compile Include="Controllers\ProprietaireController.cs" />
     <Compile Include="Entities\Bien.cs">
       <DependentUpon>EntityFramework.tt</DependentUpon>

@@ -145,10 +145,6 @@
           <Property Name="Nom" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Valeur" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="DateCreation" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Bien1" Relationship="Self.FK_Bien_Bien" FromRole="Bien" ToRole="Bien1" />
-          <NavigationProperty Name="Bien2" Relationship="Self.FK_Bien_Bien" FromRole="Bien1" ToRole="Bien" />
-          <NavigationProperty Name="Bien11" Relationship="Self.FK_Bien_Bien1" FromRole="Bien" ToRole="Bien1" />
-          <NavigationProperty Name="Bien3" Relationship="Self.FK_Bien_Bien1" FromRole="Bien1" ToRole="Bien" />
           <NavigationProperty Name="Liaison" Relationship="Self.FK_Liaison_Bien" FromRole="Bien" ToRole="Liaison" />
         </EntityType>
         <EntityType Name="Liaison">
@@ -160,7 +156,6 @@
           <Property Name="Unique" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Bien" Relationship="Self.FK_Liaison_Bien" FromRole="Liaison" ToRole="Bien" />
           <NavigationProperty Name="Proprietaire" Relationship="Self.FK_Liaisoe" FromRole="Liaison" ToRole="Proprietaire" />
-          <NavigationProperty Name="Proprietaire1" Relationship="Self.FK_Liaison_Proprietaire" FromRole="Liaison" ToRole="Proprietaire" />
         </EntityType>
         <EntityType Name="Proprietaire">
           <Key>
@@ -171,34 +166,7 @@
           <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Localite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Liaison" Relationship="Self.FK_Liaisoe" FromRole="Proprietaire" ToRole="Liaison" />
-          <NavigationProperty Name="Liaison1" Relationship="Self.FK_Liaison_Proprietaire" FromRole="Proprietaire" ToRole="Liaison" />
-          <NavigationProperty Name="Proprietaire1" Relationship="Self.FK_Proprietaire_Proprietaire" FromRole="Proprietaire" ToRole="Proprietaire1" />
-          <NavigationProperty Name="Proprietaire2" Relationship="Self.FK_Proprietaire_Proprietaire" FromRole="Proprietaire1" ToRole="Proprietaire" />
-        </EntityType>
-        <Association Name="FK_Bien_Bien">
-          <End Role="Bien" Type="Self.Bien" Multiplicity="1" />
-          <End Role="Bien1" Type="Self.Bien" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Bien">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Bien1">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Bien_Bien1">
-          <End Role="Bien" Type="Self.Bien" Multiplicity="1" />
-          <End Role="Bien1" Type="Self.Bien" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Bien">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Bien1">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+          </EntityType>
         <Association Name="FK_Liaison_Bien">
           <End Role="Bien" Type="Self.Bien" Multiplicity="1" />
           <End Role="Liaison" Type="Self.Liaison" Multiplicity="*" />
@@ -223,42 +191,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Liaison_Proprietaire">
-          <End Role="Proprietaire" Type="Self.Proprietaire" Multiplicity="1" />
-          <End Role="Liaison" Type="Self.Liaison" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proprietaire">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Liaison">
-              <PropertyRef Name="IdProprietaire" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Proprietaire_Proprietaire">
-          <End Role="Proprietaire" Type="Self.Proprietaire" Multiplicity="1" />
-          <End Role="Proprietaire1" Type="Self.Proprietaire" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Proprietaire">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Proprietaire1">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="EvaluationEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bien" EntityType="Self.Bien" />
           <EntitySet Name="Liaison" EntityType="Self.Liaison" />
           <EntitySet Name="Proprietaire" EntityType="Self.Proprietaire" />
-          <AssociationSet Name="FK_Bien_Bien" Association="Self.FK_Bien_Bien">
-            <End Role="Bien" EntitySet="Bien" />
-            <End Role="Bien1" EntitySet="Bien" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Bien_Bien1" Association="Self.FK_Bien_Bien1">
-            <End Role="Bien" EntitySet="Bien" />
-            <End Role="Bien1" EntitySet="Bien" />
-          </AssociationSet>
           <AssociationSet Name="FK_Liaison_Bien" Association="Self.FK_Liaison_Bien">
             <End Role="Bien" EntitySet="Bien" />
             <End Role="Liaison" EntitySet="Liaison" />
@@ -266,14 +202,6 @@
           <AssociationSet Name="FK_Liaisoe" Association="Self.FK_Liaisoe">
             <End Role="Proprietaire" EntitySet="Proprietaire" />
             <End Role="Liaison" EntitySet="Liaison" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Liaison_Proprietaire" Association="Self.FK_Liaison_Proprietaire">
-            <End Role="Proprietaire" EntitySet="Proprietaire" />
-            <End Role="Liaison" EntitySet="Liaison" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Proprietaire_Proprietaire" Association="Self.FK_Proprietaire_Proprietaire">
-            <End Role="Proprietaire" EntitySet="Proprietaire" />
-            <End Role="Proprietaire1" EntitySet="Proprietaire" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
