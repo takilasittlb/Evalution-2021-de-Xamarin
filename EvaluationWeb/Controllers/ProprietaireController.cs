@@ -21,9 +21,9 @@ namespace EvaluationWeb.Controllers
             {
                 db.Configuration.ProxyCreationEnabled = false;
 
-                var categories = db.Proprietaire.Include(nameof(Proprietaire)).OrderByDescending(x => x.Nom).
+                var proprietaires = db.Proprietaire.Include(nameof(Proprietaire)).OrderByDescending(x => x.Nom).
                     Skip(index * taille + 1).Take(taille).ToList();
-                return Ok(Proprietaire);
+                return Ok(Proprietaires);
             }
             catch (DbUpdateException ex)
             {
