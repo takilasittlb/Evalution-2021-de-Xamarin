@@ -6,11 +6,17 @@
              mc:Ignorable="d"
              x:Class="EvaluationXamarin.MainPage">
 
-    <StackLayout>
+    <StackLayout Padding="10dp" Spacing="5dp">
         <!-- Place new controls here -->
         <Label Text="Welcome to Xamarin.Forms!" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
+        <Entry Placeholder="Nom"/>
+
+        <Entry Placeholder="Valeur"/>
+
+        <Entry Placeholder="Date de creation"/>
+
     </StackLayout>
 
 </ContentPage>
